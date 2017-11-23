@@ -1,6 +1,6 @@
-import { Book, DamageLogger, Author, Librarian } from './interfaces';
+import * as Interfaces from './interfaces';
 
-class UniversityLibrarian implements Librarian {
+class UniversityLibrarian implements Interfaces.Librarian {
 	name: string;
 	email: string;
 	department: string;
@@ -10,12 +10,12 @@ class UniversityLibrarian implements Librarian {
 	}
 }
 
-class ReferenceItem {
+abstract class ReferenceItem {
 
 	private _publisher: string;
 	static department: string = "Research";
 	
-	constructor(public title: string, private year: number) {
+	constructor(public title: string, protected year: number) {
 		console.log('creating a new ReferenceItem...');
 	}
 
@@ -31,6 +31,8 @@ class ReferenceItem {
 	set publisher(newPublisher: string) {
 		this._publisher = newPublisher;
 	}
+
+	abstract printCitation(): void;
 }
 
 export { UniversityLibrarian, ReferenceItem };
